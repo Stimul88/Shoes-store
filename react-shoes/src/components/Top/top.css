@@ -1,0 +1,19 @@
+/* Top Sales */
+.top-sales {
+    min-height: 300px;
+}
+h2, .h2 {
+    margin-bottom: 1.5em;
+    margin-top: 2em;
+}
+
+.col-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
+.btn-outline-primary {
+    color: #727e86;
+    border-color: #727e86;
+}

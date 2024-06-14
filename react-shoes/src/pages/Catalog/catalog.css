@@ -1,0 +1,32 @@
+.catalog {
+    min-height: 600px;
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.catalog-search-form {
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 0 20px;
+    background: #FFFFFF;
+    box-shadow: 0 0 10px #D4E4E6;
+    border-radius: 50px;
+    margin-bottom: 2em;
+}
+
+.btn-outline-primary {
+    color: #727e86;
+    border-color: #727e86;
+}
+
+.catalog-item-card {
+    margin-bottom: 1em;
+}

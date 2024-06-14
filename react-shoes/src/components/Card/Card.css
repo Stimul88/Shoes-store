@@ -1,0 +1,8 @@
+/*.card-text {*/
+/*    !*min-height: 40px;*!*/
+/*    margin-top: 1em;*/
+/*}*/
+
+.card-body {
+    min-height: 20px;
+}
