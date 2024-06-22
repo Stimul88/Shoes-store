@@ -48,6 +48,9 @@ const product = createSlice({
     returnOne: (state) => {
       state.count = 1
     },
+    cleanHighlight: (state, action) => {
+      state.highlightSize = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -68,5 +71,5 @@ const product = createSlice({
   }
 });
 
-export const { highlight, handleClickPlus, handleClickMinus, returnOne } = product.actions;
+export const { highlight, handleClickPlus, handleClickMinus, returnOne, cleanHighlight } = product.actions;
 export default product.reducer;

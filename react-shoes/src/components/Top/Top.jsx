@@ -12,7 +12,6 @@ export function Top() {
     if(topSales.length === 0) {
       dispatch(fetchTop())
     }
-
   }, [])
 
   return (

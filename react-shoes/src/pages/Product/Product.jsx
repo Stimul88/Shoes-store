@@ -1,10 +1,21 @@
 import "./product.css"
 import {useDispatch, useSelector} from "react-redux";
-import {handleClickMinus, handleClickPlus, highlight} from "../../store/productSlice";
+import {
+  cleanHighlight,
+  fetchProduct,
+  handleClickMinus,
+  handleClickPlus,
+  highlight,
+  returnOne
+} from "../../store/productSlice";
 import {useNavigate} from "react-router-dom";
+import {fetchItems, getOrder, select} from "../../store/itemsSlice";
+import {useEffect} from "react";
 
 export function Product() {
+  const { orders } = useSelector((state) => state.items);
   const { product, loadingProduct, highlightSize, count } = useSelector((state) => state.product);
+  const { loading, error } = useSelector((state) => state.items);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -19,17 +30,53 @@ export function Product() {
 
   const onHighlight = (e) => {
     if(e.target.dataset.available === "true") {
-      console.log(e.target.dataset.available)
       dispatch(highlight(e.target.textContent))
     }
   }
 
   const navigateGo = () => {
-    navigate("/basket")
+    const newArray = Array.from(orders);
+
+    const orderChoose = {
+      id: product.id,
+      title: product.title,
+      sku: product.sku,
+      manufacturer: product.manufacturer,
+      product: product.color,
+      material: product.material,
+      season: product.season,
+      reason: product.reason,
+      size: highlightSize,
+      count: count,
+      price: product.price
+    }
+    const findId = newArray.find(item => item.id === product.id)
+
+    if(findId) {
+      const newArr = newArray.map(obj => {
+        if (obj.id === product.id && obj.id !== obj.size) {
+          return {...obj, count: count + obj.count};
+        }
+        return obj;
+      });
+
+      dispatch(getOrder(newArr))
+      dispatch(returnOne())
+      dispatch(cleanHighlight(""))
+      navigate("/cart")
+      return
+    }
+
+
+    dispatch(getOrder(newArray.concat(orderChoose)))
+    dispatch(returnOne())
+    dispatch(cleanHighlight(""))
+    navigate("/cart")
   }
 
   return (
     <section className="catalog-item">
+      {error && !loading && <h4>{error}</h4>}
       {loadingProduct &&
         <div className="preloader">
           <div className="spinner-grow text-success" role="status">

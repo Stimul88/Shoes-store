@@ -3,9 +3,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {spaceForZeros} from "../../js/spaceForZeros";
 import {fetchProduct, returnOne} from "../../store/productSlice";
+import {fetchItems, select, cleanSelect} from "../../store/itemsSlice";
+import {useEffect} from "react";
 
 export function Card({props}) {
   const { product } = useSelector((state) => state.product);
+  const { selectId } = useSelector((state) => state.items);
   const dispatch = useDispatch();
 
   const getFetchProduct = () => {
@@ -27,7 +30,7 @@ export function Card({props}) {
           <Link
             onClick={getFetchProduct}
             className="btn btn-outline-primary"
-            to={`/catalog/:${props.id}`}>
+            to={`/catalog/${props.id}`}>
             Заказать
           </Link>
         </div>

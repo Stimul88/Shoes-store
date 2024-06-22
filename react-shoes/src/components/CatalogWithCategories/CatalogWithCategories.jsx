@@ -1,7 +1,7 @@
 import {Card, Categories} from "../index";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {fetchItems} from "../../store/itemsSlice";
+import {fetchItems, select, cleanSelect} from "../../store/itemsSlice";
 
 export function CatalogWithCategories() {
   const { items, loading, error, searchItem } = useSelector((state) => state.items);
@@ -42,9 +42,14 @@ export function CatalogWithCategories() {
     setOldItems(items)
   }
 
+  const newSelect = (e) => {
+    dispatch(cleanSelect(""))
+    dispatch(select(e.target.id))
+  }
+
   return (
     <>
-      {/*{error && <h4>{error}</h4>}*/}
+      {!loading && error && <h4>{error}</h4>}
       {loading  &&
         <div className="preloader">
           <div className="spinner-grow text-warning" role="status">
@@ -61,8 +66,12 @@ export function CatalogWithCategories() {
                   <span className="visually-hidden">Loading...</span>
                 </div>
               </div>}
-            {error && <h4>{error}</h4>}
-            {items.map(item => <Card props={item} key={item.id}/>)}
+            {items.map(item =>
+              <Card
+                id={item.id}
+                onClick={newSelect}
+                props={item}
+                key={item.id}/>)}
           </div>
           <div className="text-center">
             {items.length < 6 &&

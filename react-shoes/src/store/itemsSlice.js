@@ -7,9 +7,11 @@ const initialState = {
   pageName: "",
   offset: "",
   searchItem: "",
+  orders: [],
   categoryId: "",
   loading: false,
   categories: "",
+  selectId: "",
   error: ""
 };
 
@@ -41,6 +43,17 @@ const items = createSlice({
     searchEl: (state, action) => {
       state.searchItem = action.payload
     },
+    getOrder: (state, action) => {
+      state.orders = action.payload;
+      localStorage.setItem('localOrder', JSON.stringify(action.payload));
+    },
+    select: (state, action) => {
+      state.selectId = action.payload;
+    },
+    cleanSelect: (state, action) => {
+      state.selectId = action.payload;
+      localStorage.setItem('localOrder', JSON.stringify(action.payload));
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -60,5 +73,5 @@ const items = createSlice({
   }
 });
 
-export const { searchEl } = items.actions;
+export const { searchEl, getOrder, select, cleanSelect } = items.actions;
 export default items.reducer;
