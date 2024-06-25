@@ -7,7 +7,7 @@ export const fetchPost = createAsyncThunk(
   'postData',
     async (data, thunkAPI) => {
 
-    const response = await axios(`${server}order`, data)
+    const response = await axios.post(`${server}order`, data)
     return response.data
   }
 )
