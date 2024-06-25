@@ -7,30 +7,10 @@ export const fetchPost = createAsyncThunk(
   'postData',
     async (data, thunkAPI) => {
 
-    const config = {
-      method: 'post',
-      url: `${server}order`,
-      headers: {
-        'Authorization': '',
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify(data)
-    };
-
-    const response = await axios(config)
-      .then(function (response) {
-        // return response.json()
-
-        // console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const response = await axios(`${server}order`, data)
     return response.data
   }
 )
-
-
 
 const order = createSlice({
   name: "orders",
@@ -48,7 +28,6 @@ const order = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPost.pending, (state) => {
-      // state.products = [];
       state.orderLoading = true;
     });
     builder.addCase(

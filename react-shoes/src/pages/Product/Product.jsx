@@ -61,14 +61,15 @@ export function Product() {
       });
 
       dispatch(getOrder(newArr))
+      localStorage.setItem('localOrder', JSON.stringify(newArray))
       dispatch(returnOne())
       dispatch(cleanHighlight(""))
       navigate("/cart")
       return
     }
 
-
     dispatch(getOrder(newArray.concat(orderChoose)))
+    localStorage.setItem('localOrder', JSON.stringify(newArray.concat(orderChoose)))
     dispatch(returnOne())
     dispatch(cleanHighlight(""))
     navigate("/cart")

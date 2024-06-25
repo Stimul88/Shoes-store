@@ -45,14 +45,12 @@ const items = createSlice({
     },
     getOrder: (state, action) => {
       state.orders = action.payload;
-      localStorage.setItem('localOrder', JSON.stringify(action.payload));
     },
     select: (state, action) => {
       state.selectId = action.payload;
     },
     cleanSelect: (state, action) => {
       state.selectId = action.payload;
-      localStorage.setItem('localOrder', JSON.stringify(action.payload));
     },
   },
   extraReducers: (builder) => {

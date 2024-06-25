@@ -49,8 +49,8 @@ export function Search() {
         <div
           onClick={navigateGo}
           className="header-controls-pic header-controls-cart">
-          {orders.length === 0 && <div className="header-controls-cart-full invisible"></div>}
-          {orders.length > 0 && <div className="header-controls-cart-full">{orders.length}</div>}
+          {orders && orders.length === 0 && <div className="header-controls-cart-full invisible"></div>}
+          {orders && orders.length > 0 && <div className="header-controls-cart-full">{orders.length}</div>}
           <div className="header-controls-cart-menu"></div>
         </div>
       </div>

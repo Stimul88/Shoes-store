@@ -12,7 +12,7 @@ export const Layout = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(localStorage.getItem ("localOrder") === '') {
+    if(!localStorage.getItem ("localOrder")) {
       return
     }
     const object = JSON.parse (localStorage.getItem ("localOrder"))

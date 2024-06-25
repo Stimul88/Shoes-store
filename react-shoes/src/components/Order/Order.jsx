@@ -63,6 +63,7 @@ export function Order() {
     }));
     setCheck(false)
     if(orderError === '') {
+      localStorage.setItem('localOrder', JSON.stringify([]))
       dispatch(getOrder([]))
       dispatch(getStatus('Ok'))
     }

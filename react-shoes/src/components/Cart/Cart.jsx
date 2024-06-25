@@ -14,6 +14,7 @@ export function Cart() {
   const deleteItem = (e) => {
     e.preventDefault()
     const newArray = orders.filter(item => item.id !== Number(e.target.id))
+    localStorage.setItem('localOrder', JSON.stringify(newArray))
 
     dispatch(getOrder(newArray))
   }
